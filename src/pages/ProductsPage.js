@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Filters, ProductList, Sort, PageHero } from '../components'
+import { useProductsContext } from '../context/products_context'
 
 const ProductsPage = () => {
+  const { products } = useProductsContext()
+  console.log(products)
   return <h4>products page</h4>
 }
 
