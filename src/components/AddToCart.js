@@ -7,8 +7,9 @@ import AmountButtons from './AmountButtons'
 
 const AddToCart = ({ product }) => {
   const { id, stock, colors } = product
-  const [isColorActive, setIsColorActive] = useState(colors[0])
+  const [mainColor, setMainColor] = useState(colors[0])
   const [amount, setAmount] = useState(1)
+  const { AddToCart } = useCartContext()
 
   const handleIncrease = (e) => {
     setAmount((currentAmount) => {
@@ -39,12 +40,12 @@ const AddToCart = ({ product }) => {
               <button
                 key={index}
                 className={`${
-                  isColorActive === color ? 'color-btn active' : 'color-btn'
+                  mainColor === color ? 'color-btn active' : 'color-btn'
                 }`}
                 style={{ background: color }}
-                onClick={() => setIsColorActive(color)}
+                onClick={() => setMainColor(color)}
               >
-                {isColorActive === color ? <FaCheck /> : null}
+                {mainColor === color ? <FaCheck /> : null}
               </button>
             )
           })}
@@ -56,7 +57,11 @@ const AddToCart = ({ product }) => {
           handleIncrease={handleIncrease}
           handleDecrease={handleDecrease}
         />
-        <Link className='btn' to='/cart'>
+        <Link
+          className='btn'
+          to='/cart'
+          onClick={() => AddToCart(id, mainColor, amount, product)}
+        >
           add to cart
         </Link>
       </div>
