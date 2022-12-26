@@ -33,7 +33,7 @@ function App() {
           <Route exact path='/products' element={<ProductsPage />} />
           <Route exact path='/products/:id' element={<SingleProductPage />} />
           <Route exact path='/checkout' element={<CheckoutPage />} />
-          <Route path='&' element={<ErrorPage />} />
+          <Route path='*' element={<ErrorPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
