@@ -23,19 +23,8 @@ const SingleProductPage = () => {
     single_product_error: error,
     fetchSingleProduct,
   } = useProductsContext()
-  const {
-    name,
-    price,
-    description,
-    review,
-    shipping,
-    stars,
-    stock,
-    category,
-    colors,
-    images,
-    company,
-  } = product
+  const { name, price, description, review, stars, stock, images, company } =
+    product
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`)

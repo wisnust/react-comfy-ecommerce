@@ -16,7 +16,7 @@ const ProductImages = ({ images = [], id = [] }) => {
       }
     }
     fetchData()
-  }, [])
+  }, [id])
 
   return (
     <Wrapper>
