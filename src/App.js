@@ -15,14 +15,9 @@ import {
 
 import styled from 'styled-components'
 
-const Button = styled.button`
-  background: green;
-  color: white;
-`
-
 function App() {
   return (
-    <>
+    <AuthWrapper>
       <BrowserRouter>
         <Navbar />
         <Sidebar />
@@ -32,12 +27,17 @@ function App() {
           <Route exact path='/cart' element={<CartPage />} />
           <Route exact path='/products' element={<ProductsPage />} />
           <Route exact path='/products/:id' element={<SingleProductPage />} />
-          <Route exact path='/checkout' element={<CheckoutPage />} />
+          <Route
+            exact
+            path='/checkout'
+            element={<PrivateRoute component={CheckoutPage} />}
+          />
+
           <Route path='*' element={<ErrorPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </AuthWrapper>
   )
 }
 
