@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-const ProductImages = ({ images = [{ url: '' }] }) => {
-  const [main, setMain] = useState(images[0] || null)
+const ProductImages = ({ images = [] }) => {
+  let firstImage = ''
+  if (images.length > 0) {
+    firstImage = images.slice(0, 1)[0]
+  }
+  const [main, setMain] = useState(firstImage)
 
   useEffect(() => {
-    if (images) {
+    if (images.length > 0) {
       setMain(images[0])
     }
   }, [images])

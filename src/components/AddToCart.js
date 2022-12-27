@@ -31,7 +31,7 @@ const AddToCart = ({ product }) => {
   }
 
   useEffect(() => {
-    if (colors) {
+    if (colors.length > 0) {
       setMainColor(colors[0])
     }
   }, [colors])
@@ -42,8 +42,6 @@ const AddToCart = ({ product }) => {
         <span>colors :</span>
         <div>
           {colors?.map((color, index) => {
-            console.log(color)
-            console.log(`main: ${mainColor}`)
             return (
               <button
                 key={index}
