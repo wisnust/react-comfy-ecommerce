@@ -6,36 +6,36 @@ Variables
 
 :root {
   /* dark shades of primary color*/
-  --clr-primary-1: hsl(22, 28%, 21%);
-  --clr-primary-2: hsl(22, 28%, 29%);
-  --clr-primary-3: hsl(22, 28%, 37%);
-  --clr-primary-4: hsl(22, 28%, 45%);
+  --clr-primary-1: #012629;
+  --clr-primary-2: #013e43;
+  --clr-primary-3: #01565d;
+  --clr-primary-4: #026f78;
   /* primary/main color */
-  --clr-primary-5: hsl(22, 31%, 52%);
+  --clr-primary-5: #028792;
   /* lighter shades of primary color */
-  --clr-primary-6: hsl(22, 31%, 60%);
-  --clr-primary-7: hsl(22, 31%, 67%);
-  --clr-primary-8: hsl(20, 31%, 74%);
-  --clr-primary-9: hsl(22, 31%, 81%);
-  --clr-primary-10: hsl(22, 31%, 88%);
+  --clr-primary-6: #309da6;
+  --clr-primary-7: #5db2b9;
+  --clr-primary-8: #8bc8cd;
+  --clr-primary-9: #b8dde0;
+  --clr-primary-10: #e6f3f4;
   /* darkest grey - used for headings */
-  --clr-grey-1: hsl(209, 61%, 16%);
-  --clr-grey-2: hsl(211, 39%, 23%);
-  --clr-grey-3: hsl(209, 34%, 30%);
-  --clr-grey-4: hsl(209, 28%, 39%);
+  --clr-grey-1: #212121;
+  --clr-grey-2: #373737;
+  --clr-grey-3: #4d4d4d;
+  --clr-grey-4: #646464;
   /* grey used for paragraphs */
-  --clr-grey-5: hsl(210, 22%, 49%);
-  --clr-grey-6: hsl(209, 23%, 60%);
-  --clr-grey-7: hsl(211, 27%, 70%);
-  --clr-grey-8: hsl(210, 31%, 80%);
-  --clr-grey-9: hsl(212, 33%, 89%);
-  --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-grey-5: #7a7a7a;
+  --clr-grey-6: #909090;
+  --clr-grey-7: #a6a6a6;
+  --clr-grey-8: #bcbcbc;
+  --clr-grey-9: #d3d3d3;
+  --clr-grey-10: #e9e9e9;
   --clr-white: #fff;
-  --clr-red-dark: hsl(360, 67%, 44%);
-  --clr-red-light: hsl(360, 71%, 66%);
-  --clr-green-dark: hsl(125, 67%, 44%);
-  --clr-green-light: hsl(125, 71%, 66%);
-  --clr-black: #222;
+  --clr-red-dark: #8b0612;
+  --clr-red-light: #cd2231;
+  --clr-green-dark: #229f07;
+  --clr-green-light: #2ac709;
+  --clr-black: #212121;
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
   --radius: 0.25rem;
@@ -58,14 +58,16 @@ Global Styles
   box-sizing: border-box;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background: var(--clr-white);
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 0.875rem;
 }
-ul {
+ul,ol,p {
+  font-family: 'Karla', sans-serif;
+}
+ul, ol {
   list-style-type: none;
 }
 a {

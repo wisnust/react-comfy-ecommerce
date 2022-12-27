@@ -37,7 +37,7 @@ const CartButtons = () => {
             logout({ returnTo: window.location.origin })
           }}
         >
-          Log Out <FaUserMinus />
+          Logout <FaUserMinus />
         </button>
       )}
     </Wrapper>

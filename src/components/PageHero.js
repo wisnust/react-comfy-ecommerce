@@ -5,10 +5,10 @@ const PageHero = ({ title, product }) => {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3>
+        <h5>
           <Link to='/'>Home </Link>
           {product && <Link to='/products'>/ Products</Link>} / {title}
-        </h3>
+        </h5>
       </div>
     </Wrapper>
   )
@@ -17,14 +17,17 @@ const PageHero = ({ title, product }) => {
 const Wrapper = styled.section`
   background: var(--clr-primary-10);
   width: 100%;
-  min-height: 20vh;
+  min-height: 80px;
   display: flex;
   align-items: center;
 
   color: var(--clr-primary-1);
+  h5 {
+    margin: 0;
+  }
   a {
     color: var(--clr-primary-3);
-    padding: 0.5rem;
+    padding: 0;
     transition: var(--transition);
   }
   a:hover {
