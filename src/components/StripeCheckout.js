@@ -14,7 +14,7 @@ import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
 import { useNavigate } from 'react-router-dom'
 
-const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+// const promise = useMemo(() => loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY))
 
 const CheckoutForm = () => {
   const { cart, total_amount, clearCart, shipping_fee } = useCartContext()
@@ -48,22 +48,21 @@ const CheckoutForm = () => {
     },
   }
 
-  const createPaymentIntent = async () => {
-    try {
-      const { data } = await axios.post(
-        '/.netlify/functions/create-payment-intent',
-        JSON.stringify({ cart, total_amount, shipping_fee })
-      )
-      setClientSecret(data.clientSecret)
-      console.log(data.clientSecret)
-    } catch (error) {
-      console.log(error.response)
-    }
-  }
-
   useEffect(() => {
+    const createPaymentIntent = async () => {
+      try {
+        const { data } = await axios.post(
+          '/.netlify/functions/create-payment-intent',
+          JSON.stringify({ cart, total_amount, shipping_fee })
+        )
+        setClientSecret(data.clientSecret)
+        console.log(data.clientSecret)
+      } catch (error) {
+        console.log(error.response)
+      }
+    }
     createPaymentIntent()
-  }, [])
+  }, [cart, shipping_fee, total_amount])
 
   const handleChange = async (event) => {
     setDisabled(event.empty)
@@ -137,6 +136,10 @@ const CheckoutForm = () => {
 }
 
 const StripeCheckout = () => {
+  // eslint-disable-next-line
+  const [promise, setPromise] = useState(() =>
+    loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+  )
   return (
     <Wrapper>
       <Elements stripe={promise}>
