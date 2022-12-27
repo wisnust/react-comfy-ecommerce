@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
@@ -7,7 +7,7 @@ import AmountButtons from './AmountButtons'
 
 const AddToCart = ({ product }) => {
   const { id, stock, colors } = product
-  const [mainColor, setMainColor] = useState(colors[0])
+  const [mainColor, setMainColor] = useState(colors[0] || null)
   const [amount, setAmount] = useState(1)
   const { AddToCart } = useCartContext()
 
@@ -30,12 +30,20 @@ const AddToCart = ({ product }) => {
     })
   }
 
+  useEffect(() => {
+    if (colors) {
+      setMainColor(colors[0])
+    }
+  }, [colors])
+
   return (
     <Wrapper>
       <div className='colors'>
         <span>colors :</span>
         <div>
           {colors?.map((color, index) => {
+            console.log(color)
+            console.log(`main: ${mainColor}`)
             return (
               <button
                 key={index}

@@ -1,35 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
-import { single_product_url } from '../utils/constants'
 
-const ProductImages = ({ images = [], id = [] }) => {
-  const [activeImage, setActiveImage] = useState(null)
+const ProductImages = ({ images = [{ url: '' }] }) => {
+  const [main, setMain] = useState(images[0] || null)
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(`${single_product_url}${id}`)
-        setActiveImage(response.data.images[0])
-      } catch (error) {
-        console.error(error)
-      }
+    if (images) {
+      setMain(images[0])
     }
-    fetchData()
-  }, [id])
+  }, [images])
 
   return (
     <Wrapper>
-      <img src={activeImage?.url || ''} alt='' className='main ' />
+      <img src={main.url} alt='main' className='main' />
       <div className='gallery'>
-        {images?.map((image, index) => {
+        {images.map((image, index) => {
           return (
             <img
-              key={index}
               src={image.url}
               alt={image.filename}
-              className={activeImage?.url === image.url ? 'active' : 'null'}
-              onClick={(e) => setActiveImage(images[index])}
+              key={index}
+              onClick={() => setMain(images[index])}
+              className={`${image.url === main.url ? 'active' : null}`}
             />
           )
         })}

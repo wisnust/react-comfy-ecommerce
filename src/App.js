@@ -13,8 +13,6 @@ import {
   AboutPage,
 } from './pages'
 
-import styled from 'styled-components'
-
 function App() {
   return (
     <AuthWrapper>
