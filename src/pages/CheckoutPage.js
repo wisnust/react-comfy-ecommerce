@@ -14,7 +14,9 @@ const CheckoutPage = () => {
         {cart.length < 1 ? (
           <div className='empty'>
             <h2>Your Cart is Empty</h2>
-            <Link className='btn'>Go to Products Page</Link>
+            <Link className='btn' to='/products'>
+              Go to Products Page
+            </Link>
           </div>
         ) : (
           <StripeCheckout />
