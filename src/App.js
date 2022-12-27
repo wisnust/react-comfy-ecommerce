@@ -26,9 +26,12 @@ function App() {
           <Route exact path='/products' element={<ProductsPage />} />
           <Route exact path='/products/:id' element={<SingleProductPage />} />
           <Route
-            exact
             path='/checkout'
-            element={<PrivateRoute component={CheckoutPage} />}
+            element={
+              <PrivateRoute>
+                <CheckoutPage />
+              </PrivateRoute>
+            }
           />
 
           <Route path='*' element={<ErrorPage />} />
