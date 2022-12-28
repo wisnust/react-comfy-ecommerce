@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
+import { useMediaQuery } from 'react-responsive'
 
 const Filters = () => {
   const {
@@ -25,6 +26,8 @@ const Filters = () => {
   const companies = getUniqueValues(all_products, 'company')
   const colors = getUniqueValues(all_products, 'colors')
 
+  const isMobile = useMediaQuery({ minWidth: 767 })
+
   return (
     <Wrapper>
       <div className='content'>
@@ -42,19 +45,40 @@ const Filters = () => {
           <div className='form-control'>
             <h5>category</h5>
             <div>
-              {categories.map((cat, index) => {
-                return (
-                  <button
-                    key={index}
-                    type='button'
-                    name='category'
-                    className={category === cat.toLowerCase() ? 'active' : null}
-                    onClick={updateFilters}
-                  >
-                    {cat}
-                  </button>
-                )
-              })}
+              {isMobile ? (
+                <>
+                  {categories.map((cat, index) => {
+                    return (
+                      <button
+                        key={index}
+                        type='button'
+                        name='category'
+                        className={
+                          category === cat.toLowerCase() ? 'active' : null
+                        }
+                        onClick={updateFilters}
+                      >
+                        {cat}
+                      </button>
+                    )
+                  })}
+                </>
+              ) : (
+                <select
+                  name='category'
+                  className='category'
+                  value={category}
+                  onChange={updateFilters}
+                >
+                  {categories.map((cat, index) => {
+                    return (
+                      <option key={index} value={cat.toLowerCase()}>
+                        {cat}
+                      </option>
+                    )
+                  })}
+                </select>
+              )}
             </div>
           </div>
 
@@ -178,11 +202,14 @@ const Wrapper = styled.section`
   .active {
     border-color: var(--clr-grey-5);
   }
-  .company {
+  .company,
+  select.category {
     background: var(--clr-grey-10);
     border-radius: var(--radius);
     border-color: transparent;
     padding: 0.25rem;
+    max-width: 100%;
+    min-width: 130px;
   }
   .colors {
     display: flex;
@@ -234,13 +261,36 @@ const Wrapper = styled.section`
   .clear-btn {
     background: var(--clr-red-dark);
     color: var(--clr-white);
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 1rem;
     border-radius: var(--radius);
   }
   @media (min-width: 768px) {
     .content {
       position: sticky;
       top: 1rem;
+    }
+  }
+  @media (max-width: 767px) {
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -10px;
+      .form-control {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+        &:first-child {
+          flex: 0 0 100%;
+          max-width: 100%;
+          input {
+            width: 100%;
+          }
+        }
+        .company,
+        select.category {
+          width: 100%;
+        }
+      }
     }
   }
 `
